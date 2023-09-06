@@ -19,8 +19,6 @@ public class PostService implements IPostService {
     @Autowired
     private IPostRepository blogRepository;
 
-
-
     private String uploadPath = "G:\\MD5\\S4\\Class\\src\\main\\webapp\\WEB-INF\\upload\\";
     @Override
     public void save(PostDto postDto) {
@@ -65,7 +63,6 @@ public class PostService implements IPostService {
 
     @Override
     public Page<Post> findAll(Pageable pageable) {
-
         return postRepository.findAll( pageable);
     }
 
@@ -73,4 +70,5 @@ public class PostService implements IPostService {
     public Page<Post> findAllByTitleContaining(String title, Pageable pageable) {
         return postRepository.findAllByTitleContaining(title,pageable);
     }
+
 }

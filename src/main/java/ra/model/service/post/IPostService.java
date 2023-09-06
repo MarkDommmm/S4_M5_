@@ -11,5 +11,4 @@ public interface IPostService extends IGenericService<Post,Long> {
         Page<Post> findAll(Pageable pageable);
         Page<Post> findAllByTitleContaining(String title, Pageable pageable);
 
-
 }
