@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+<body class="w3-light-grey">
+
+
+<div class="w3-content" style="max-width:1400px">
+
+    <!-- Header -->
+    <header class="w3-container w3-center w3-padding-32">
+        <h1>ALO ALO</h1>
+
+    </header>
+    <div class="w3-col m8 s12" style="margin: 16px!important;">
+        <p>
+            <a href="/add">
+                <button class="w3-button w3-padding-large w3-white w3-border"><b>Create a post</b></button>
+            </a>
+            <a href="/categories">
+                <button class="w3-button w3-padding-large w3-white w3-border"><b>Category List</b></button>
+            </a>
+        </p>
+        <form action="/">
+            <input type="text" name="search" placeholder="Search..">
+            <button type="submit" class="w3-button w3-padding-large w3-white w3-border"><b>Search</b></button>
+        </form>
+
+    </div>
+
+    <div class="w3-row">
+
+
+        <th:block th:each="p:${posts}">
+            <div class="w3-card-4 w3-margin w3-white">
+
+                <div class="w3-container">
+                    <h3><b th:text="${p.title}"></b></h3>
+                    <img th:src="@{|/upload/${p.image}|}" width="100px">
+                    <span th:text="${p.creationDate}"></span>
+                    <span th:if="${p.category}" th:text="${p.category.name}"></span>
+                </div>
+
+                <div class="w3-container">
+
+                    <div class="w3-row">
+                        <div class="w3-col m8 s12">
+                            <a th:href="@{|/posts/detail/${p.id}|}">
+                                <button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b>
+                                </button>
+                            </a>
+                            <a th:href="@{|/posts/edit/${p.id}|}">
+                                <button class="w3-button w3-padding-large w3-white w3-border"><b>Edit</b></button>
+                            </a>
+                            <a th:href="@{|/posts/delete/${p.id}|}">
+                                <button class="w3-button w3-padding-large w3-white w3-border"><b>Delete</b></button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </th:block>
+
+    </div>
+
+    <div>
+        <a th:href="@{'/posts'(page=${posts.number - 1})}" th:if="${posts.hasPrevious()}">Previous</a>
+        <span th:text="${posts.number + 1}"></span>/<span th:text="${posts.totalPages}"></span>
+        <a th:href="@{'/posts'(page=${posts.number + 1})}" th:if="${posts.hasNext()}">Next</a>
+    </div>
+
+
+</div>
+<br>
+
+</body>
+</html>

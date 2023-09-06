@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+<h3>Edit Category</h3>
+<div class="w3-col m8 s12" style="margin: 16px!important;">
+    <p><a href="/categories"><button class="w3-button w3-padding-large w3-white w3-border"><b>Back to list</b></button></a> </p>
+
+</div>
+<div class="container">
+    <form action="/categories/update" th:object="${category}" method="post" >
+        <input type="hidden" name="id" th:value="${category.id}" >
+
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}">
+
+        <input type="submit" value="Update">
+    </form>
+</div>
+
+</body>
+</html>
